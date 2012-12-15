@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<virtual-image name="WASsn">
+	<software-resource name="SUSE_V_10">
+		<configuration name="ConfigNET">
+			<parameter name="bootproto" value="static" />
+			<parameter name="hostname" value="testvm3" />
+			<parameter name="domain" value="testvm3.fudan.edu.cn" />
+			<parameter name="ipaddr" value="10.10.82.12" />
+			<parameter name="netmask" value="255.255.255.0" />
+			<parameter name="gateway" value="10.10.82.1" />
+			<parameter name="pri_dns" value="202.120.224.6" />
+			<parameter name="sec_dns" value="202.120.224.26" />
+		</configuration>
+		<configuration name="ConfigPWD">
+			<parameter name="root" value="111111" />
+		</configuration>
+	</software-resource>
+	<software-resource name="WAS_V_6_1">
+		<configuration name="ConfigWAS">
+			<parameter name="config_type" value="StandaloneNode" />
+			<parameter name="enable_security" value="y" />
+			<parameter name="secure_adminid" value="wsadmin" />
+			<parameter name="secure_passwd" value="pw4was" />
+		</configuration>
+	</software-resource>
+</virtual-image>

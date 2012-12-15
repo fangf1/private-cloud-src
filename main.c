@@ -1,0 +1,191 @@
+/********** INCLUDE FILES **********/
+
+#include <stdio.h>
+#include <string.h>
+#include <libvirt/virterror.h>
+#include <libvirt/libvirt.h>
+#include "pm_man/pm_man.h"
+#include "pm_man/data.h"
+#include "vm_man/vm_man.h"
+#include "vm_man/data.h"
+#include "util/xallocate.h"
+#include "util/cerror.h"
+
+/********** GLOBAL VARIBLES **********/
+
+char *nodefile = "node";
+
+
+static virConnectPtr getConnect(PMinfo_p pm){
+	if(pm->conn == NULL){
+		pm->conn = virConnectOpen(pm->url);
+		if (pm->conn == NULL) {
+			fprintf(stderr, "Failed to open connection to xen:/// at node %s\n", pm->ip);
+			return NULL;
+		}
+	}
+	
+	return pm->conn;
+}
+int init_vms_temp(PMinfo_p pm){
+	virConnectPtr conn = getConnect(pm);
+	virDomainInfo info;
+
+	if(!conn) return FAIL;
+
+	int i, rc;
+	int numActiveDomains, numInactiveDomains;
+	char **inactiveDomains = NULL;
+	int *activeDomains = NULL;	
+	virDomainPtr dom;
+	VMinfo_p vm;
+
+	/* init active vms */
+	numActiveDomains = virConnectNumOfDomains(conn);
+	activeDomains = xmalloc(sizeof(int) * numActiveDomains);
+	numActiveDomains = virConnectListDomains(conn, activeDomains, numActiveDomains);
+	for(i = 0; i < numActiveDomains; ++i){
+		if(activeDomains[i] == 0) continue;
+		dom = virDomainLookupByID(conn, activeDomains[i]);
+		virDomainGetInfo(dom, &info);
+		if((vm = allocate_vm(pm, virDomainGetName(dom), info.state, info.maxMem / 1024UL, info.nrVirtCpu)) == NULL){
+			virDomainFree(dom);
+			continue;
+		}
+		else{
+			if((rc = add_vm(pm, vm)) != SUCCESS){
+				virDomainFree(dom);
+				xfree(vm);
+				continue;
+			}
+		}
+	}
+	xfree(activeDomains);
+
+	/* init inactive vms */
+	numInactiveDomains = virConnectNumOfDefinedDomains(conn);
+	inactiveDomains = xmalloc(sizeof(char *) * numInactiveDomains);
+	numInactiveDomains = virConnectListDefinedDomains(conn, inactiveDomains, numInactiveDomains);
+	
+	for(i = 0; i < numInactiveDomains; ++i){
+		dom = virDomainLookupByName(conn, inactiveDomains[i]);
+		xfree(inactiveDomains[i]);
+		virDomainGetInfo(dom, &info);
+		if((vm = allocate_vm(pm, virDomainGetName(dom), info.state, info.maxMem / 1024UL, info.nrVirtCpu)) == NULL){    
+			virDomainFree(dom);
+			continue;
+		}
+		else{
+			if((rc = add_vm(pm, vm)) != SUCCESS){
+				virDomainFree(dom);
+				xfree(vm);
+				continue;
+			}
+		}
+	}
+
+	xfree(inactiveDomains);
+	virDomainFree(dom);
+	return SUCCESS;
+}
+
+/********** MAIN FUNCTION **********/
+int main(int agrc, char ** argv){
+	FILE *n;
+	int i = 0, rc;
+	char ip[16], c;
+	PMinfo_p pm;
+			
+
+	if((n = fopen(nodefile, "r")) == NULL){
+		CERROR("Failed to open node file\n");
+		return FAIL;
+	}
+
+	init_pms();
+	while(c != '#'){
+		i = 0;
+		do{
+			c = fgetc(n);
+			if(c != ';' && c != '#'){
+			   	ip[i++] = c;
+			}
+			else break;
+		}while(1);
+		ip[i]='\0';
+	
+		if((pm = allocate_pm(ip)) == NULL)
+			return FAIL;
+		if((rc = add_pm(pm)) != SUCCESS){
+			xfree(pm);
+			return FAIL;
+		}
+		init_vms(&pm->vms);
+		if((rc = init_vms_temp(pm)) != SUCCESS){
+			fprintf(stderr, "init_vms() error at pm:%s\n", pm->hostname);
+			return FAIL;
+		}
+
+	}
+
+	char cmd[64];
+	char arg[3][64];
+
+	printf("> ");
+	scanf("%s", cmd);
+
+	do{
+		if(!strcmp(cmd, "describepms")){
+			print_pms();
+		}
+		else if(!strcmp(cmd, "describevms")){
+			print_all_vms();
+		}
+		else if(!strcmp(cmd, "create")){
+			VMCreate((PMinfo_p)clGetTop(global_pms), "xml");
+		}
+		else if(!strcmp(cmd, "start")){
+			scanf("%s", arg[0]);
+			VMStart(arg[0]);
+		}
+		else if(!strcmp(cmd, "pause")){
+			scanf("%s", arg[0]);
+			VMPause(arg[0]);
+		}
+		else if(!strcmp(cmd, "reboot")){
+			scanf("%s", arg[0]);
+			VMRestart(arg[0]);
+		}	
+		else if(!strcmp(cmd, "shutdown")){
+			scanf("%s", arg[0]);
+			VMShutdown(arg[0]);
+		}
+		else if(!strcmp(cmd, "describevmsinpm")){
+			scanf("%s", arg[0]);
+			PMinfo_p p = find_pm(arg[0]);
+			if(p) VMShowStateInPM(p);
+		}
+		else if (!strcmp(cmd, "destroy")){
+			scanf("%s", arg[0]);
+			rc = VMDestroy(arg[0]);
+			if(rc == SUCCESS) printf("destroy vm successed\n");
+			else printf("destroy vm failed\n");
+		}
+		else if(!strcmp(cmd, "migrate")){
+			scanf("%s", arg[0]);
+			scanf("%s", arg[1]);
+			PMinfo_p p = find_pm(arg[1]);
+			if(p) rc = VMMigrate(arg[0], p);
+			if(rc == SUCCESS) printf("migrate vm %s to %s successed\n", arg[0], arg[1]);
+			else printf("migrate failed\n");
+		}
+		else{
+			printf("no this command\n");
+		}
+		printf("> ");
+		scanf("%s", cmd);
+
+	}while(strcmp(cmd, "exit"));
+
+	return 0;
+}

@@ -1,0 +1,35 @@
+TOPDIR=$(shell pwd)
+
+# debug flag
+ifeq ($(DODEBUG), true)
+    DEBUG_FLAG= -DNDEBUG
+else
+    DEBUG_FLAG=
+endif
+
+# compile tools
+	CC=g++ $(DEBUG_FLAG) -I $(HPATH)
+	GCC=gcc $(DEBUG_FLAG) -I $(HPATH)
+	LD=ld
+	AR=ar
+	STRIP=strip
+	AS=as
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

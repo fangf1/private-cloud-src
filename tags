@@ -1,0 +1,147 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+ALLOCATE_FAIL	vm_man/vm_man.h	15;"	d
+ALL_O	rules.mk	/^ALL_O=$(OX_OBJS) $(O_OBJS)$/;"	m
+ASFLAGS	Makefile	/^ASFLAGS=$/;"	m
+BLOCKED	pm_man/pm_man.h	/^enum {RUNNING, SHUTDOWN, BLOCKED, PAUSED};$/;"	e	enum:__anon1
+CERROR	util/cerror.c	/^int CERROR(const char * fmt, ...){$/;"	f
+CFLAGS	Makefile	/^CFLAGS=$/;"	m
+DODEBUG	Makefile	/^DODEBUG=true$/;"	m
+EXTRA_ARFLAGS	rules.mk	/^EXTRA_ARFLAGS=$/;"	m
+EXTRA_ASFLAGS	rules.mk	/^EXTRA_ASFLAGS=$/;"	m
+EXTRA_CFLAGS	rules.mk	/^EXTRA_CFLAGS=-Wall$/;"	m
+EXTRA_LDFLAGS	rules.mk	/^EXTRA_LDFLAGS=$/;"	m
+FAIL	util/cerror.h	9;"	d
+FILE_NOT_EXIST	vm_man/vm_man.h	14;"	d
+FINDPATH	Makefile	/^FINDPATH=$/;"	m
+HPATH	Makefile	/^HPATH=$(TOPDIR) $/;"	m
+LDFLAGS	Makefile	/^LDFLAGS= -lpthread -lvirt$/;"	m
+LIBPM	Makefile	/^LIBPM=$(TOPDIR)\/pm_man\/pm.o$/;"	m
+LIBUTIL	Makefile	/^LIBUTIL=$(TOPDIR)\/util\/util.o$/;"	m
+LIBVM	Makefile	/^LIBVM=$(TOPDIR)\/vm_man\/vm.o$/;"	m
+LX_OBJS	pm_man/makefile	/^LX_OBJS:=$/;"	m
+LX_OBJS	util/makefile	/^LX_OBJS:=$/;"	m
+LX_OBJS	vm_man/makefile	/^LX_OBJS:=$/;"	m
+NAME_LEN	pm_man/pm_man.h	12;"	d
+NAME_LEN	vm_man/vm_man.h	13;"	d
+O_OBJS	pm_man/makefile	/^O_OBJS:=data.o pm_man.o $/;"	m
+O_OBJS	util/makefile	/^O_OBJS:=xallocate.o cerror.o clist.o$/;"	m
+O_OBJS	vm_man/makefile	/^O_OBJS:=data.o vm_man.o $/;"	m
+O_TARGET	pm_man/makefile	/^O_TARGET:= pm.o$/;"	m
+O_TARGET	util/makefile	/^O_TARGET:=util.o$/;"	m
+O_TARGET	vm_man/makefile	/^O_TARGET:= vm.o$/;"	m
+PATCHLEVEL	Makefile	/^PATCHLEVEL=0$/;"	m
+PAUSED	pm_man/pm_man.h	/^enum {RUNNING, SHUTDOWN, BLOCKED, PAUSED};$/;"	e	enum:__anon1
+PM_DATA_H	pm_man/data.h	4;"	d
+PM_MAN_H	pm_man/pm_man.h	2;"	d
+PMinfo	pm_man/pm_man.h	/^typedef struct PMinfo{$/;"	s
+PMinfo	pm_man/pm_man.h	/^}PMinfo, *PMinfo_p;$/;"	t	typeref:struct:PMinfo
+PMinfo_p	pm_man/pm_man.h	/^}PMinfo, *PMinfo_p;$/;"	t	typeref:struct:PMinfo
+RUNNING	pm_man/pm_man.h	/^enum {RUNNING, SHUTDOWN, BLOCKED, PAUSED};$/;"	e	enum:__anon1
+SHUTDOWN	pm_man/pm_man.h	/^enum {RUNNING, SHUTDOWN, BLOCKED, PAUSED};$/;"	e	enum:__anon1
+SUBDIRS	Makefile	/^SUBDIRS	= pm_man vm_man util$/;"	m
+SUBLEVEL	Makefile	/^SUBLEVEL=38$/;"	m
+SUB_DIRS	pm_man/makefile	/^SUB_DIRS:=$/;"	m
+SUB_DIRS	util/makefile	/^SUB_DIRS:=$/;"	m
+SUB_DIRS	vm_man/makefile	/^SUB_DIRS:=$/;"	m
+SUCCESS	util/cerror.h	8;"	d
+TARGET	Makefile	/^TARGET=cloud$/;"	m
+TOPOBJS	Makefile	/^TOPOBJS=main.o$/;"	m
+VERSION	Makefile	/^VERSION=1$/;"	m
+VMCreate	vm_man/vm_man.c	/^int VMCreate(PMinfo_p pm, char * filename){$/;"	f
+VMDefineXML	vm_man/vm_man.c	/^virDomainPtr VMDefineXML(PMinfo_p pm, char * filename){$/;"	f
+VMDestroy	vm_man/vm_man.c	/^int VMDestroy(const char * vmname){$/;"	f
+VMMigrate	vm_man/vm_man.c	/^int VMMigrate(const char * vmname, PMinfo_p pm){$/;"	f
+VMPause	vm_man/vm_man.c	/^int VMPause(const char * vmname){$/;"	f
+VMRestart	vm_man/vm_man.c	/^int VMRestart(const char * vmname){$/;"	f
+VMShowStateInPM	vm_man/vm_man.c	/^clist VMShowStateInPM(PMinfo_p p){$/;"	f
+VMShowstate	vm_man/vm_man.c	/^VMinfo_p VMShowstate(const char * vmname){$/;"	f
+VMShutdown	vm_man/vm_man.c	/^int VMShutdown(const char * vmname){$/;"	f
+VMStart	vm_man/vm_man.c	/^int VMStart(const char * vmname){$/;"	f
+VM_DATA_H	vm_man/data.h	4;"	d
+VM_MAN_H	vm_man/vm_man.h	2;"	d
+VMinfo	vm_man/vm_man.h	/^typedef struct VMinfo{$/;"	s
+VMinfo	vm_man/vm_man.h	/^}VMinfo, *VMinfo_p;$/;"	t	typeref:struct:VMinfo
+VMinfo_p	vm_man/vm_man.h	/^}VMinfo, *VMinfo_p;$/;"	t	typeref:struct:VMinfo
+__CERROR_H__	util/cerror.h	4;"	d
+__CLIST_H	util/clist.h	5;"	d
+__XALLOCATE_H__	util/xallocate.h	4;"	d
+_clist	util/clist.h	/^typedef struct _clist {$/;"	s
+add_pm	pm_man/data.c	/^int add_pm(PMinfo_p pm){$/;"	f
+add_vm	vm_man/data.c	/^int add_vm(PMinfo_p pm, VMinfo_p vm){$/;"	f
+allocate_pm	pm_man/data.c	/^PMinfo_p allocate_pm(const char * ip){$/;"	f
+allocate_vm	vm_man/data.c	/^VMinfo_p allocate_vm(PMinfo_p pm, const char * vmname, int state, unsigned long mem, int cpu){$/;"	f
+avail_cpu	pm_man/pm_man.h	/^	unsigned int avail_cpu;$/;"	m	struct:PMinfo
+avail_memory	pm_man/pm_man.h	/^	unsigned long long avail_memory; \/*MB*\/$/;"	m	struct:PMinfo
+clCopy	util/clist.c	/^int clCopy(clist to, clist from){$/;"	f
+clDestroy	util/clist.c	/^void clDestroy(clist ref)$/;"	f
+clGetNext	util/clist.c	/^void * clGetNext(clist ref)$/;"	f
+clGetTop	util/clist.c	/^void * clGetTop(clist ref){$/;"	f
+clInit	util/clist.c	/^clist clInit(clistDestroyFunc destroy){$/;"	f
+clInsertEnd	util/clist.c	/^int clInsertEnd(clist ref, void *data){$/;"	f
+clInsertTop	util/clist.c	/^int clInsertTop(clist ref, void *data){$/;"	f
+clPop	util/clist.c	/^void clPop(clist ref){$/;"	f
+clRemove	util/clist.c	/^int clRemove(clist ref, clistCompare cmp, const char * name){$/;"	f
+clReset	util/clist.c	/^void clReset(clist ref){$/;"	f
+clist	util/clist.h	/^} *clist;$/;"	t	typeref:struct:_clist
+clistCompare	util/clist.h	/^typedef int (*clistCompare) (void * data, const char * name);$/;"	t
+clistDestroyFunc	util/clist.h	/^typedef void (*clistDestroyFunc) (void *data);$/;"	t
+clistnode	util/clist.h	/^struct clistnode {$/;"	s
+closeConn	monitor/listwf.c	/^void closeConn()$/;"	f
+cmp	vm_man/data.c	/^static int cmp(void * data, const char * name){$/;"	f	file:
+conn	monitor/listwf.c	/^static virConnectPtr conn = NULL;$/;"	v	file:
+conn	pm_man/pm_man.h	/^	virConnectPtr conn;$/;"	m	struct:PMinfo
+cpu	vm_man/vm_man.h	/^	int cpu;$/;"	m	struct:VMinfo
+cpu_time	monitor/listwf.c	/^    long long cpu_time;$/;"	m	struct:timeInfo	file:
+data	util/clist.h	/^	void *data;$/;"	m	struct:clistnode
+destroy	util/clist.h	/^	clistDestroyFunc destroy;$/;"	m	struct:_clist
+doXfree	util/xallocate.c	/^inline void doXfree(void * ptr){$/;"	f
+find_pm	pm_man/data.c	/^PMinfo_p find_pm(const char * pm){$/;"	f
+find_pm_by_ip	pm_man/data.c	/^static PMinfo_p find_pm_by_ip(const char * pmip){$/;"	f	file:
+find_pm_by_name	pm_man/data.c	/^static PMinfo_p find_pm_by_name(const char * pmname){$/;"	f	file:
+find_vm	vm_man/data.c	/^VMinfo_p find_vm(const char * vmname){$/;"	f
+freeDom	monitor/listwf.c	/^void freeDom(virDomainPtr dom)$/;"	f
+getConnect	main.c	/^static virConnectPtr getConnect(PMinfo_p pm){$/;"	f	file:
+getConnect	vm_man/vm_man.c	/^static virConnectPtr getConnect(PMinfo_p pm){$/;"	f	file:
+getDomainInfo	monitor/listwf.c	/^void getDomainInfo(int id, timeInfoNode infos)$/;"	f
+getTimeInfo	monitor/listwf.c	/^void getTimeInfo(int id, timeInfoNode * infos)$/;"	f
+global_pms	pm_man/pm_man.c	/^clist global_pms = NULL;$/;"	v
+host_pm	vm_man/vm_man.h	/^	struct PMinfo * host_pm;$/;"	m	struct:VMinfo	typeref:struct:VMinfo::PMinfo
+hostname	pm_man/pm_man.h	/^	char * hostname;$/;"	m	struct:PMinfo
+init_pms	pm_man/pm_man.c	/^int init_pms(){$/;"	f
+init_vms	vm_man/vm_man.c	/^int init_vms(clist * vms){$/;"	f
+init_vms_temp	main.c	/^int init_vms_temp(PMinfo_p pm){$/;"	f
+ip	pm_man/pm_man.h	/^	char ip[16];$/;"	m	struct:PMinfo
+list	util/clist.h	/^	struct clistnode *list;$/;"	m	struct:_clist	typeref:struct:_clist::clistnode
+main	main.c	/^int main(int agrc, char ** argv){$/;"	f
+main	monitor/listwf.c	/^int main()$/;"	f
+max_cpu	pm_man/pm_man.h	/^	unsigned int max_cpu;$/;"	m	struct:PMinfo
+max_memory	pm_man/pm_man.h	/^	unsigned long long max_memory; \/*MB*\/$/;"	m	struct:PMinfo
+mem	vm_man/vm_man.h	/^	unsigned long mem; \/*MB*\/$/;"	m	struct:VMinfo
+next	util/clist.h	/^	struct clistnode *next;$/;"	m	struct:clistnode	typeref:struct:clistnode::clistnode
+nodefile	main.c	/^char *nodefile = "node";$/;"	v
+pm_destroy	pm_man/pm_man.c	/^static void pm_destroy(void *ptr){$/;"	f	file:
+print_all_vms	vm_man/data.c	/^int print_all_vms(){$/;"	f
+print_pms	pm_man/data.c	/^void print_pms(){$/;"	f
+print_vms	vm_man/data.c	/^int print_vms(const PMinfo_p pm){$/;"	f
+real_time	monitor/listwf.c	/^    struct timeval real_time;$/;"	m	struct:timeInfo	typeref:struct:timeInfo::timeval	file:
+remove_vm	vm_man/data.c	/^int remove_vm(const char * vmname){$/;"	f
+save	util/clist.h	/^	struct clistnode *save;$/;"	m	struct:_clist	typeref:struct:_clist::clistnode
+size	util/clist.h	/^	size_t size;$/;"	m	struct:_clist
+size	util/clist.h	/^	size_t size;$/;"	m	struct:clistnode
+state	pm_man/pm_man.h	/^	int state;$/;"	m	struct:PMinfo
+state	vm_man/vm_man.h	/^	unsigned char state;$/;"	m	struct:VMinfo
+system_exec	image_man/xen_deploy.pl	/^sub system_exec{$/;"	s
+timeInfo	monitor/listwf.c	/^typedef struct timeInfo$/;"	s	file:
+timeInfoNode	monitor/listwf.c	/^} timeInfoNode;$/;"	t	typeref:struct:timeInfo	file:
+url	pm_man/pm_man.h	/^	char url[512];$/;"	m	struct:PMinfo
+vm_destroy	vm_man/vm_man.c	/^static void vm_destroy(void *ptr){$/;"	f	file:
+vmname	vm_man/vm_man.h	/^	char vmname[NAME_LEN];$/;"	m	struct:VMinfo
+vms	pm_man/pm_man.h	/^	clist vms;$/;"	m	struct:PMinfo
+xfree	util/xallocate.h	10;"	d
+xmalloc	util/xallocate.c	/^inline void * xmalloc(size_t size){$/;"	f
+xrealloc	util/xallocate.c	/^inline void * xrealloc(void * ptr, size_t size){$/;"	f
